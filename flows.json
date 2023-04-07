@@ -1,0 +1,1695 @@
+[
+    {
+        "id": "43aa07b7922e027b",
+        "type": "tab",
+        "label": "Factory IO control flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "601730bd555299da",
+        "type": "ui_button",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "3d0852e90d7d5d88",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stop Lids Conveyor",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "e0ea686ecf8e9266"
+            ]
+        ]
+    },
+    {
+        "id": "6d2dc7826f266c8c",
+        "type": "ui_button",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "3d0852e90d7d5d88",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stop Base Conveyor",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "a46ccda89c5057e5"
+            ]
+        ]
+    },
+    {
+        "id": "a46ccda89c5057e5",
+        "type": "ui_slider",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "label": "Base Conveyor Speed",
+        "tooltip": "",
+        "group": "66c1229e15428e8c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "2964204c936f2df8",
+                "aa8320b6c055a6e5"
+            ]
+        ]
+    },
+    {
+        "id": "e0ea686ecf8e9266",
+        "type": "ui_slider",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "label": "Lids Conveyor Speed",
+        "tooltip": "",
+        "group": "66c1229e15428e8c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "19f12190ee844573",
+                "50442e59f9be81f1"
+            ]
+        ]
+    },
+    {
+        "id": "e34ae362abd705d5",
+        "type": "ui_slider",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "label": "Separator Conveyor Speed",
+        "tooltip": "",
+        "group": "66c1229e15428e8c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "56e6d9d4a423a5cf",
+                "8dfe3ed96164b6d7"
+            ]
+        ]
+    },
+    {
+        "id": "2964204c936f2df8",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "727690af9795cff4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Base Conveyor",
+        "label": "RPM",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "56e6d9d4a423a5cf",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "727690af9795cff4",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Separator Conveyor",
+        "label": "RPM",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 720,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "aa8320b6c055a6e5",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-BASE CV\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 100,
+        "wires": [
+            [
+                "af32df40a318d58e"
+            ]
+        ]
+    },
+    {
+        "id": "af32df40a318d58e",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 890,
+        "y": 100,
+        "wires": [
+            [
+                "9c8f58356a429668"
+            ]
+        ]
+    },
+    {
+        "id": "9c8f58356a429668",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "19f12190ee844573",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-LIDS CV\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 260,
+        "wires": [
+            [
+                "8583f9d2221df9ef"
+            ]
+        ]
+    },
+    {
+        "id": "8583f9d2221df9ef",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 870,
+        "y": 260,
+        "wires": [
+            [
+                "c253d10c5ffa7cfd"
+            ]
+        ]
+    },
+    {
+        "id": "c253d10c5ffa7cfd",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8dfe3ed96164b6d7",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-EXIT CV\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "05988e0e6df9f408"
+            ]
+        ]
+    },
+    {
+        "id": "05988e0e6df9f408",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "1d2d04c38db20639"
+            ]
+        ]
+    },
+    {
+        "id": "1d2d04c38db20639",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d131369c64f22fa2",
+        "type": "ui_button",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "3d0852e90d7d5d88",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stop Separator Conveyor",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "teal",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "e34ae362abd705d5"
+            ]
+        ]
+    },
+    {
+        "id": "373e2a4e87e7384b",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/read?ids=Factory IO OPC Protocol.Virtual Device.CH1-VISION",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [
+                "d29ad137165f646a",
+                "708bca359f204775",
+                "a85ff4dd7205a1cd",
+                "db5a86dbbea5a406"
+            ]
+        ]
+    },
+    {
+        "id": "d29ad137165f646a",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "78247185761ab692",
+        "type": "inject",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 640,
+        "wires": [
+            [
+                "373e2a4e87e7384b"
+            ]
+        ]
+    },
+    {
+        "id": "708bca359f204775",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Condition for blue",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 3)\n{\nmsg.payload = true;\nreturn msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 680,
+        "wires": [
+            [
+                "096148edfae1e735",
+                "1a8e16cf28df368b"
+            ]
+        ]
+    },
+    {
+        "id": "096148edfae1e735",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR1 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 660,
+        "wires": [
+            [
+                "e1414bcd2dedb47c"
+            ]
+        ]
+    },
+    {
+        "id": "e1414bcd2dedb47c",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 660,
+        "wires": [
+            [
+                "69ab4e2303df2f83"
+            ]
+        ]
+    },
+    {
+        "id": "69ab4e2303df2f83",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "1a8e16cf28df368b",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR1 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 720,
+        "wires": [
+            [
+                "ebf967ed030b3859"
+            ]
+        ]
+    },
+    {
+        "id": "ebf967ed030b3859",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            [
+                "afb3a35eb3e57165"
+            ]
+        ]
+    },
+    {
+        "id": "afb3a35eb3e57165",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "a85ff4dd7205a1cd",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Condition for 6",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 6)\n{\nmsg.payload = true;\nreturn msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 820,
+        "wires": [
+            [
+                "52dd490a0cab64e1",
+                "deb203ce22e71582"
+            ]
+        ]
+    },
+    {
+        "id": "52dd490a0cab64e1",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR2 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 780,
+        "wires": [
+            [
+                "921124891e08c4bb"
+            ]
+        ]
+    },
+    {
+        "id": "921124891e08c4bb",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 780,
+        "wires": [
+            [
+                "3f8968b8aa2832cc"
+            ]
+        ]
+    },
+    {
+        "id": "3f8968b8aa2832cc",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "deb203ce22e71582",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR2 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 860,
+        "wires": [
+            [
+                "b58eab1aefe904b1"
+            ]
+        ]
+    },
+    {
+        "id": "b58eab1aefe904b1",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 860,
+        "wires": [
+            [
+                "bb30bdda14365ae3"
+            ]
+        ]
+    },
+    {
+        "id": "bb30bdda14365ae3",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "db5a86dbbea5a406",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Condition for 9",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 9)\n{\nmsg.payload = true;\nreturn msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 940,
+        "wires": [
+            [
+                "0bc8571f454a4c88",
+                "4c17fc7a1f6332c4"
+            ]
+        ]
+    },
+    {
+        "id": "0bc8571f454a4c88",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR3 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 920,
+        "wires": [
+            [
+                "787fe05bff6ed775"
+            ]
+        ]
+    },
+    {
+        "id": "787fe05bff6ed775",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 920,
+        "wires": [
+            [
+                "0765dcd7ba80114d"
+            ]
+        ]
+    },
+    {
+        "id": "0765dcd7ba80114d",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "4c17fc7a1f6332c4",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR3 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 980,
+        "wires": [
+            [
+                "58240325c345238b"
+            ]
+        ]
+    },
+    {
+        "id": "58240325c345238b",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1070,
+        "y": 980,
+        "wires": [
+            [
+                "238fe4d225a2f6df"
+            ]
+        ]
+    },
+    {
+        "id": "238fe4d225a2f6df",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "d45130634e40082f",
+        "type": "inject",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1640,
+        "wires": [
+            [
+                "ce0550f499cb467f"
+            ]
+        ]
+    },
+    {
+        "id": "ce0550f499cb467f",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/read?ids=Factory IO OPC Protocol.Virtual Device.CH1-EXIT SENSOR1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 1640,
+        "wires": [
+            [
+                "669a157c1aea7d15"
+            ]
+        ]
+    },
+    {
+        "id": "669a157c1aea7d15",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Condition for sorting",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == false)\n{\nmsg.payload = false;\nreturn msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1640,
+        "wires": [
+            [
+                "c48aae268b8527f5",
+                "48459010e4acaf1d",
+                "6315c4c73ad57b47",
+                "7dd24c1570951cf3",
+                "c0dfc97767ad450d",
+                "205bb561d4727977"
+            ]
+        ]
+    },
+    {
+        "id": "c48aae268b8527f5",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR1 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1600,
+        "wires": [
+            [
+                "ace0191c12e8cd5b"
+            ]
+        ]
+    },
+    {
+        "id": "ace0191c12e8cd5b",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 1600,
+        "wires": [
+            [
+                "4c41f72151a078b8"
+            ]
+        ]
+    },
+    {
+        "id": "4c41f72151a078b8",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "48459010e4acaf1d",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR1 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1660,
+        "wires": [
+            [
+                "c8f8a09f1b1917d4"
+            ]
+        ]
+    },
+    {
+        "id": "c8f8a09f1b1917d4",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 1660,
+        "wires": [
+            [
+                "4c7e8d4d6ec5b16d"
+            ]
+        ]
+    },
+    {
+        "id": "4c7e8d4d6ec5b16d",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "6315c4c73ad57b47",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR2 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1780,
+        "wires": [
+            [
+                "70f0869342889e9a"
+            ]
+        ]
+    },
+    {
+        "id": "70f0869342889e9a",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 1780,
+        "wires": [
+            [
+                "6120ce3a0908a865"
+            ]
+        ]
+    },
+    {
+        "id": "6120ce3a0908a865",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "7dd24c1570951cf3",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR2 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1840,
+        "wires": [
+            [
+                "3458ef0b30c605f5"
+            ]
+        ]
+    },
+    {
+        "id": "3458ef0b30c605f5",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 1840,
+        "wires": [
+            [
+                "8ee56f1de4157b92"
+            ]
+        ]
+    },
+    {
+        "id": "8ee56f1de4157b92",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "c0dfc97767ad450d",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR3 B\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1940,
+        "wires": [
+            [
+                "204d43ba1c392945"
+            ]
+        ]
+    },
+    {
+        "id": "204d43ba1c392945",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 1940,
+        "wires": [
+            [
+                "c60b135aba1b7041"
+            ]
+        ]
+    },
+    {
+        "id": "c60b135aba1b7041",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "205bb561d4727977",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Transfer Function",
+        "func": "var x = msg.payload;\n\nmsg.headers = {\n    \"Content-type\" : \"application/json\"\n    //\"my-custom-header\": \"a value\"\n}\n\nmsg.payload = [{\"id\":\"Factory IO OPC Protocol.Virtual Device.CH1-STR3 T\", \"v\": x}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 2000,
+        "wires": [
+            [
+                "b0692594eae6790f"
+            ]
+        ]
+    },
+    {
+        "id": "b0692594eae6790f",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "http request",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/write",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1090,
+        "y": 2000,
+        "wires": [
+            [
+                "e733929b9a8e29ef"
+            ]
+        ]
+    },
+    {
+        "id": "e733929b9a8e29ef",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "7451548593c21bea",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Counting for Blue",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 3)\n{\n    var counter = flow.get(\"counter\") || 0;\n    counter++;\n    flow.set(\"counter\", counter);\n    counter = counter;\n    msg.payload = counter;\n    return msg;\n\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1200,
+        "wires": [
+            [
+                "05661e5a06f563ef",
+                "8e89a5dde7605756",
+                "1d5d38c2568f25af"
+            ]
+        ]
+    },
+    {
+        "id": "05661e5a06f563ef",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "8e89a5dde7605756",
+        "type": "ui_text",
+        "z": "43aa07b7922e027b",
+        "group": "18c437c81a9a8c98",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Blue Base",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1050,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "1d5d38c2568f25af",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "18c437c81a9a8c98",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "compass",
+        "title": "Blue Base",
+        "label": "Count",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1050,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "2f503d7a8794e705",
+        "type": "http request",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:39320/iotgateway/read?ids=Factory IO OPC Protocol.Virtual Device.CH1-VISION",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 1220,
+        "wires": [
+            [
+                "7451548593c21bea",
+                "5164ab8c4b65cd37",
+                "9a7598e039d5ab3d"
+            ]
+        ]
+    },
+    {
+        "id": "38a3868347081c16",
+        "type": "inject",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1220,
+        "wires": [
+            [
+                "2f503d7a8794e705"
+            ]
+        ]
+    },
+    {
+        "id": "5164ab8c4b65cd37",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Counting for Green",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 6)\n{\n    var counter = flow.get(\"counter2\") || 0;\n    counter++;\n    flow.set(\"counter2\", counter);\n    counter = counter;\n    msg.payload = counter;\n    return msg;\n\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1260,
+        "wires": [
+            [
+                "f641092229a27e35",
+                "f787d041c5464d79",
+                "307ce8243976e360"
+            ]
+        ]
+    },
+    {
+        "id": "f641092229a27e35",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "f787d041c5464d79",
+        "type": "ui_text",
+        "z": "43aa07b7922e027b",
+        "group": "18c437c81a9a8c98",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Green Base",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1090,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "307ce8243976e360",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "18c437c81a9a8c98",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "compass",
+        "title": "Green Base",
+        "label": "Count",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1090,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "9a7598e039d5ab3d",
+        "type": "function",
+        "z": "43aa07b7922e027b",
+        "name": "Counting for Metal",
+        "func": "var x = msg.payload.readResults[0].v;\n\nif(x == 9)\n{\n    var counter = flow.get(\"counter3\") || 0;\n    counter++;\n    flow.set(\"counter3\", counter);\n    counter = counter;\n    msg.payload = counter;\n    return msg;\n\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1320,
+        "wires": [
+            [
+                "9ce1f491873dc17a",
+                "1bc27a62eb49f41e",
+                "8b5698e71c5571cf"
+            ]
+        ]
+    },
+    {
+        "id": "9ce1f491873dc17a",
+        "type": "debug",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "1bc27a62eb49f41e",
+        "type": "ui_text",
+        "z": "43aa07b7922e027b",
+        "group": "18c437c81a9a8c98",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Metal Base",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1070,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "8b5698e71c5571cf",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "18c437c81a9a8c98",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "compass",
+        "title": "Metal  Base",
+        "label": "Count",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1070,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "50442e59f9be81f1",
+        "type": "ui_gauge",
+        "z": "43aa07b7922e027b",
+        "name": "",
+        "group": "727690af9795cff4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Lids Conveyor",
+        "label": "RPM",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 700,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a0e0ca009353c9b0",
+        "type": "ui_spacer",
+        "z": "43aa07b7922e027b",
+        "name": "spacer",
+        "group": "30d232deeb5f2d02",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3d0852e90d7d5d88",
+        "type": "ui_group",
+        "name": "Operation Control",
+        "tab": "2403636c94ce6e41",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "66c1229e15428e8c",
+        "type": "ui_group",
+        "name": "Speed Control",
+        "tab": "2403636c94ce6e41",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "727690af9795cff4",
+        "type": "ui_group",
+        "name": "Speed Checkup",
+        "tab": "2403636c94ce6e41",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "18c437c81a9a8c98",
+        "type": "ui_group",
+        "name": "Product Count",
+        "tab": "2403636c94ce6e41",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2403636c94ce6e41",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
